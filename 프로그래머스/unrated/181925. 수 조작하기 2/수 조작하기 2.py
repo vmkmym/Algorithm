@@ -1,4 +1,15 @@
 def solution(numLog):
+    result = ''
+    log = {1: 'w', -1: 's', 10: 'd', -10: 'a'}
+
+    for i in range(1, len(numLog)): 
+        diff = numLog[i] - numLog[i - 1]
+        result += log[diff] if diff in log else ''
+
+    return result
+
+# 한 줄.. 근데 이렇게까지 길게 쓰면 읽기 힘듦
+def solution(numLog):
     return "".join(["w" if numLog[i] - numLog[i - 1] == 1 else "s" if numLog[i] - numLog[i - 1] == -1 else "d" if numLog[i] - numLog[i - 1] == 10 else "a" for i in range(1, len(numLog))])
 
 # 처음 풀이 : 이 문제는 다른 사람 풀이도 메모리랑 시간이 줄어들지가 않는데 왜지...
