@@ -5,3 +5,6 @@ def solution(num_list):
         num_list.append(num_list[-1] * 2)
         
     return num_list
+
+# 4점 받음 삼항 연산자로 한 줄로 쓸 수 있었지만 너무 길어져서 가독성 떨어짐 
+# 다른 사람 풀이도 대체로 비슷
