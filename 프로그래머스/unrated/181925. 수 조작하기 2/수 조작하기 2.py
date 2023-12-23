@@ -1,9 +1,16 @@
 def solution(numLog):
-    result = ''
-    log = {1: 'w', -1: 's', 10: 'd', -10: 'a'}
+    control = []
+    
+    for i in range(len(numLog)):
+        diff = numLog[i] - (numLog[i - 1] if i > 0 else 0)
 
-    for i in range(1, len(numLog)): 
-        diff = numLog[i] - numLog[i - 1]
-        result += log[diff] if diff in log else ''
+        if diff == 1:
+            control.append('w')
+        elif diff == -1:
+            control.append('s')
+        elif diff == 10:
+            control.append('d')
+        elif diff == -10:
+            control.append('a')
 
-    return result
+    return ''.join(control)
