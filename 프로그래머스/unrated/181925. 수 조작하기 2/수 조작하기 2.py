@@ -1,9 +1,2 @@
 def solution(numLog):
-    result = ''
-    log = {1: 'w', -1: 's', 10: 'd', -10: 'a'}
-
-    for i in range(1, len(numLog)): 
-        diff = numLog[i] - numLog[i - 1]
-        result += log[diff] if diff in log else ''
-
-    return result
+    return "".join(["w" if numLog[i] - numLog[i - 1] == 1 else "s" if numLog[i] - numLog[i - 1] == -1 else "d" if numLog[i] - numLog[i - 1] == 10 else "a" for i in range(1, len(numLog))])
