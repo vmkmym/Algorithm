@@ -4,3 +4,5 @@ def solution(arr, queries):
             if i % k == 0:
                 arr[i] += 1
     return arr
+
+# 다른 사람 풀이도 비슷
