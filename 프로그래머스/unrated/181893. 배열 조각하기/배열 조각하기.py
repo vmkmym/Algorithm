@@ -6,6 +6,7 @@ def solution(arr, query):
             arr = [arr[j] for j in range(len(arr)) if j >= e]
     return arr
 
+
 # 다른 풀이
 def solution(arr, query):
     for i, e in enumerate(query):
