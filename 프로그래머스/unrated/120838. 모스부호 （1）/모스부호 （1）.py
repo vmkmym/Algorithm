@@ -8,3 +8,33 @@ def solution(letter):
     }
     
     return ''.join(morse[char] for char in letter.split())
+
+# gpt 다른 풀이
+def solution(letter):
+    morse = { 
+        '.-':'a', '-...':'b', '-.-.':'c', '-..':'d', '.':'e', '..-.':'f',
+        '--.':'g', '....':'h', '..':'i', '.---':'j', '-.-':'k', '.-..':'l',
+        '--':'m', '-.':'n', '---':'o', '.--.':'p', '--.-':'q', '.-.':'r',
+        '...':'s', '-':'t', '..-':'u', '...-':'v', '.--':'w', '-..-':'x',
+        '-.--':'y', '--..':'z'
+    }
+
+    result = ''  # 해독된 문자열을 저장하는 변수
+    i = 0
+
+    while i < len(letter):
+        code = ''  # 현재 Morse 코드를 저장하는 변수
+
+        # 공백이 아닐 때까지 Morse 코드를 만듦
+        while i < len(letter) and letter[i] != ' ':
+            code += letter[i]
+            i += 1
+        
+        # 공백을 만나면 해당 Morse 코드를 해독하여 결과에 추가
+        if code in morse:
+            result += morse[code]
+
+        # 다음 Morse 코드로 이동하기 위해 인덱스 증가
+        i += 1
+
+    return result
