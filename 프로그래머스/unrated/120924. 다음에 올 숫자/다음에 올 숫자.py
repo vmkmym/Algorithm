@@ -5,7 +5,7 @@ def solution(common):
         next_num = common[-1] * (common[1] // common[0])
     return next_num
 
-
+# 원래 내가 풀던 풀이 : 테스트 케이스 4개 통과 못함 -> 질문 올려놓음 ㅋㅋ
 def solution2(common):
     if len(common) < 3:
         return None
@@ -24,6 +24,7 @@ def solution2(common):
     
     return None  
 
+# 5개 통과한 이유
 # 공차가 0인 경우
 # common의 원소가 음수인 경우
 # 공차와 공비를 두번째와 첫번째로 해야됨
