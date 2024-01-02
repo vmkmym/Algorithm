@@ -1,4 +1,2 @@
 def solution(money):
-    ice = int(money) // 5500
-    change = money - (ice * 5500)
-    return [ice, change]
+    return [money // 5500, money % 5500]
