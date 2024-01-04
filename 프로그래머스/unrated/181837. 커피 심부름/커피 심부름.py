@@ -1,8 +1,4 @@
 def solution(order):
-    americano = {"iceamericano", "americanoice", "hotamericano", "americanohot", "americano", "anything"}
-    latte = {"icecafelatte", "cafelatteice", "hotcafelatte", "cafelattehot", "cafelatte"}
-    
-    black = sum(1 for coffee in order if coffee in americano)
-    milk = len(order) - black
-    
-    return black * 4500 + milk * 5000
+    americano = sum(4500 for coffee in order if 'latte' not in coffee)
+    latte = sum(5000 for coffee in order if 'latte' in coffee)
+    return americano + latte
