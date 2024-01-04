@@ -1,10 +1,10 @@
 def solution(arr, k):
-    unique_arr = []
-    for num in arr:
-        if num not in unique_arr:
-            unique_arr.append(num)
+    pick = []
     
-    if len(unique_arr) < k:
-        return unique_arr + [-1] * (k - len(unique_arr))
-    else:
-        return unique_arr[:k]
+    for i in arr:
+        if i not in pick:
+            pick.append(i)
+        if len(pick) == k:
+            break
+
+    return pick + [-1] * (k - len(pick))
