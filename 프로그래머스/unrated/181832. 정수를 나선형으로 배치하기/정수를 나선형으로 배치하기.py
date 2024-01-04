@@ -17,3 +17,5 @@ def solution(n):
         x, y = nx, ny  # 다음 위치로 이동
 
     return matrix
+
+# gpt code
