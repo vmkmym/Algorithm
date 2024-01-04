@@ -13,3 +13,10 @@ def solution(arr):
     last_index = len(arr) - last_index 
 
     return arr[first_index:last_index]
+
+
+# 다른 사람 풀이
+def solution(arr):
+    if 2 not in arr:
+        return [-1]
+    return arr[arr.index(2) : len(arr) - arr[::-1].index(2)]
