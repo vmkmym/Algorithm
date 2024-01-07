@@ -1,11 +1,11 @@
 def solution(s):
-    answer = 0
-    tmp = s.split()
+    result = 0
+    stack = s.split()
 
-    for i in range(len(tmp)):
-        if tmp[i] == "Z":
-            answer -= int(tmp[i-1])
+    for i in range(len(stack)):
+        if stack[i] == "Z":
+            result -= int(stack[i-1])
         else:
-            answer += int(tmp[i])
+            result += int(stack[i])
 
-    return answer
+    return result
