@@ -11,3 +11,8 @@ def solution(lines):
             occurrences += 1  # 발생 횟수가 2번 이상인 경우에만 카운트
     
     return occurrences
+
+# 다른 사람 풀이 : 교집합과 합집합 이용
+def solution(lines):
+    sets = [set(range(min(l), max(l))) for l in lines]
+    return len(sets[0] & sets[1] | sets[0] & sets[2] | sets[1] & sets[2])
