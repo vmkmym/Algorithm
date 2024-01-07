@@ -14,3 +14,10 @@ def solution(numbers):
             word = ''
         
     return int(result)
+
+# 아 왜 enumerate, replace 생각을 못했지
+# 다른 사람 풀이 
+def solution(numbers):
+    for num, eng in enumerate(["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]):
+        numbers = numbers.replace(eng, str(num))
+    return int(numbers)
