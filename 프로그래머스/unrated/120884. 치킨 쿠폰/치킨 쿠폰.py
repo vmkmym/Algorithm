@@ -12,3 +12,8 @@ def solution(chicken):
             order += 1
     
     return service
+
+
+# 다른 풀이 : 이게 뭔데...
+def solution(chicken):
+    return int(chicken*0.11111111111)
