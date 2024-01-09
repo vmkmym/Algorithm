@@ -14,3 +14,6 @@ def solution(n):
                 break
                 
     return count
+
+# 한 번씩 순회해
+# 누적해서 더한 값이 자연수 n이면 count
