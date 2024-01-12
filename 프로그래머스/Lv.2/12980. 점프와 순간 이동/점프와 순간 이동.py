@@ -7,3 +7,7 @@ def solution(n):
             n -= 1
             count += 1 
     return count
+
+# 다른 사람 풀이
+def solution(n):
+    return bin(n).count('1')
