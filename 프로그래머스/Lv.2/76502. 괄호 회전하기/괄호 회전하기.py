@@ -24,3 +24,4 @@ def is_valid(s):
                 return False
     return len(stack) == 0
 
+# 올바른 괄호인지 확인하는 함수 + 괄호 한 칸씩 회전하는 함수
