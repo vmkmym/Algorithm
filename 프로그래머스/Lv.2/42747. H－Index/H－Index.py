@@ -6,6 +6,9 @@ def solution(citations):
             h_index = h
     return h_index
 
+# 정렬 문제인데 정렬 안해도 풀리지만,, 통과는 못함
+# 정렬을 왜 해야하지? -> h번 이상 인용된 논문이 h편 이상이어야 하기 때문에?
+
 
 # 다른 사람 풀이
 def solution(citations):
