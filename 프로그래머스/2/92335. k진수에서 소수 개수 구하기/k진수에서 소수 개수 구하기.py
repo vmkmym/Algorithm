@@ -25,3 +25,11 @@ def solution(n, k):
             count += 1
 
     return count
+
+# 다른 사람의 풀이 : 엄청 간단하다.
+def conv(n, k):
+    s = ''
+    while n:
+        s += str(n%k)
+        n //= k
+    return s[::-1]
