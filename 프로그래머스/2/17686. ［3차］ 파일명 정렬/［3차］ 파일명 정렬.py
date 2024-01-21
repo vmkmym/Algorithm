@@ -20,3 +20,11 @@ match.groups()는 일치하는 부분을 튜플로 반환합니다.
 이 튜플을 head, number, tail에 할당합니다. 
 만약 파일명이 정규 표현식과 일치하지 않으면, 함수는 None을 반환합니다.
 '''
+
+# 다른 사람 풀이 : head와 number가 동일할 경우 원래의 순서를 유지하지 않음. 두 번의 sorted 호출이 독립적이기때문
+import re
+
+def solution(files):
+    a = sorted(files, key=lambda file : int(re.findall('\d+', file)[0]))
+    b = sorted(a, key=lambda file : re.split('\d+', file.lower())[0])
+    return b
