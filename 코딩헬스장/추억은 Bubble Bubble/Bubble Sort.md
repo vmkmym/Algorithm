@@ -1,5 +1,4 @@
-![image](https://github.com/vmkmym/Algorithm/assets/71699054/0eb7a2f9-8034-4304-802a-9eabcfb028d7)
-![image](https://github.com/vmkmym/Algorithm/assets/71699054/ff0f959c-dba8-4789-89c4-63d144037cc3)
+![Sorting_bubblesort_anim](https://github.com/vmkmym/Algorithm/assets/71699054/e00a680c-1eaa-48af-9e8a-03f0b84081f3)
 
 ### 버블 정렬(Bubble Sort)은 가장 간단한 정렬 알고리즘 중 하나로, 인접한 두 요소를 비교하여 정렬하는 방식입니다.
 
