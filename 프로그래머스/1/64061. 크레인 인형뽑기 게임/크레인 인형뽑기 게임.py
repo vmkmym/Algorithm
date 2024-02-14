@@ -22,3 +22,24 @@ def solution(board, moves):
     return doll_count
 
 # 시간복잡도 O(n+m)
+
+# 다른 사람의 풀이
+# 시간 복잡도는 O(n*m)
+# board의 모든 행과 열을 순회함 O(n*n)
+# moves의 모든 원소를 순회함 O(m)
+# 이 두 부분은 독립적으로 수행되므로, 전체 시간 복잡도는 두 부분의 시간 복잡도의 합, 즉 O(nn + m)이 됩니다. 하지만 보통 시간 복잡도에서는 가장 큰 항만을 고려하므로, 이 코드의 시간 복잡도는 O(nm)으로 볼 수 있습니다.
+def solution(board, moves):
+    # board를 전치(transpose)한 후 0을 제거하여 각 열을 리스트로 만든 것
+    cols = [list(filter(lambda y: y > 0, x)) for x in zip(*board)]
+    # a는 터트려진 인형의 개수, s는 뽑힌 인형을 저장하는 스택
+    a, s = 0, [0]
+
+    for m in moves:
+        if cols[m - 1]:
+            # 뽑은 인형 d와 스택의 가장 위의 인형 l을 비교하여 같으면 터트리고
+            if (d := cols[m - 1].pop(0)) == (l := s.pop()):
+                a += 2
+            # 같지 않으면 스택에 다시 넣는다
+            else:
+                s.extend([l, d])
+    return a
