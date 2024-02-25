@@ -37,3 +37,41 @@ class Solution {
         return giftsNextMonth.maxOrNull() ?: 0
     }
 }
+
+// Kotlin스럽게 Refactoring
+class Solution {
+    fun solution(friends: Array<String>, gifts: Array<String>): Int {
+        val n = friends.size
+        val friendToIndex = friends.withIndex().associate { it.value to it.index }
+        val giftCounts = Array(n) { IntArray(n) }
+
+        gifts.forEach { gift ->
+            gift.split(" ").let { (giver, receiver) ->
+                friendToIndex[giver]?.let { i ->
+                    friendToIndex[receiver]?.let { j ->
+                        giftCounts[i][j]++
+                    }
+                }
+            }
+        }
+
+        val giftsNextMonth = IntArray(n)
+
+        (0 until n).forEach { i ->
+            (0 until n).forEach { j ->
+                if (i != j) {
+                    when {
+                        giftCounts[i][j] > giftCounts[j][i] -> giftsNextMonth[i]++
+                        giftCounts[i][j] == giftCounts[j][i] -> {
+                            val giveCountI = giftCounts[i].sum() - giftCounts.sumBy { it[i] }
+                            val giveCountJ = giftCounts[j].sum() - giftCounts.sumBy { it[j] }
+                            if (giveCountI > giveCountJ) giftsNextMonth[i]++
+                        }
+                    }
+                }
+            }
+        }
+
+        return giftsNextMonth.maxOrNull() ?: 0
+    }
+}
