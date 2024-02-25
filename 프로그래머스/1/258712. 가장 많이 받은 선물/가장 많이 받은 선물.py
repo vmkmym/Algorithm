@@ -24,7 +24,11 @@ def solution(friends, gifts):
             if i != j: # 자기 자신에게 선물을 주는 경우를 제외하고
                 if (gift_counts[i][j] > gift_counts[j][i] or # i가 j에게 준 선물이 j가 i에게 준 선물보다 많을 때
                         (gift_counts[i][j] == gift_counts[j][i] and # i가 j에게 준 선물과 j가 i에게 준 선물이 같을 때
-                         sum(gift_counts[i]) - sum(row[i] for row in gift_counts) > sum(gift_counts[j]) - sum(row[j] for row in gift_counts))): # i가 받은 선물이 j가 받은 선물보다 많을 때
+                         sum(gift_counts[i]) - sum(row[i] for row in gift_counts) > sum(gift_counts[j]) - sum(row[j] for row in gift_counts))): # 전자가 받은 선물의 합이 후자가 받은 선물의 합보다 많을 때
                     gifts_next_month[i] += 1 # 다음 달에 i는 선물을 받음
                     
     return max(gifts_next_month)
+
+# sum(gift_counts[i]) : i가 받은 선물의 합
+# sum(row[i] for row in gift_counts) : i가 준 선물의 합
+#  sum(gift_counts[i]) - sum(row[i] for row in gift_counts) : i가 받은 선물의 합 - i가 준 선물의 합 = i가 받은 선물의 개수
