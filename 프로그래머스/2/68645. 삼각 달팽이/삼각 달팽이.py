@@ -14,4 +14,8 @@ def solution(n):
             b[x][y] = num
             num += 1
             
-    return sum(b, [])
+    result = []      
+    for row in b:
+        for num in row:
+            result.append(num)
+    return result
