@@ -24,6 +24,34 @@ def solution(numbers, hand):
 
     return answer
 
+# 리팩토링
+def solution(numbers, hand):
+    keypad = [[3, 1], [0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]
+    hand_positions = {'L': [3, 0], 'R': [3, 2]}
+    hand_mapping = {1: 'L', 4: 'L', 7: 'L', 3: 'R', 6: 'R', 9: 'R'}
+
+    def press_button(num, hand):
+        hand_positions[hand] = keypad[num]
+        return hand
+
+    def calculate_distance(pos1, pos2):
+        return sum(abs(a-b) for a, b in zip(pos1, pos2))
+
+    answer = ''
+    for num in numbers:
+        if num in hand_mapping:
+            answer += press_button(num, hand_mapping[num])
+        else:
+            left_dist = calculate_distance(hand_positions['L'], keypad[num])
+            right_dist = calculate_distance(hand_positions['R'], keypad[num])
+
+            if left_dist < right_dist or (left_dist == right_dist and hand == 'left'):
+                answer += press_button(num, 'L')
+            else:
+                answer += press_button(num, 'R')
+
+    return answer
+
 # 다른 사람의 풀이
 def solution(numbers, hand):
     answer = ''
