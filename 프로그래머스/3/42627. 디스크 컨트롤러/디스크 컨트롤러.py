@@ -21,6 +21,6 @@ def solution(jobs):
             total_time += current_time - request_time
         else:
             # 대기 작업이 없는 경우, 다음 작업의 시작 시간으로 현재 시간을 설정
-            current_time = jobs[0][0]
+            current_time = max(current_time, jobs[0][0])
             
     return total_time // total_jobs
