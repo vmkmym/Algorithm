@@ -22,3 +22,13 @@ def math_word(words):
 N = int(input())
 words = [input().strip() for _ in range(N)]
 print(math_word(words))
+
+# 테스트 코드
+def test_math_word():
+    assert math_word(["AAA", "AAA"]) == 1998
+    assert math_word(["GCF", "ACDEB"]) == 99437
+    assert math_word(list("ABCDEFGHIJ")) == 45
+    assert math_word(["AB", "BA"]) == 187
+    print("All test cases passed!")
+
+test_math_word()

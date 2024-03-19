@@ -1,22 +1,36 @@
 # 백준 1339번 단어수학
-N = int(input())
-words = [input().strip() for _ in range(N)]
-        
+from collections import Counter
+
 def math_word(words):
-    alpha = [0] * 26
-
+    counter = Counter()
+    
+    # 각 단어의 알파벳별 가중치를 계산 
+    # (가중치는 10의 자리수로 계산한다. ex) AB = 10A + B, BA = 10B + A
     for word in words:
-        i = 0
-        for w in word[::-1]:
-            alpha[ord(w) - ord('A')] += (10 ** i)
-            i += 1
+        length = len(word)
+        for i in range(length):
+            counter[word[i]] += 10 ** (length - i - 1)
 
-    alpha.sort(reverse=True)
-
+    # 가중치를 기준으로 내림차순 정렬. ex) [10+1 = 11, 1+10 =11]
+    values = sorted(counter.values(), reverse=True)
+    
+    # 가중치가 높은 순으로 9부터 곱해서 더한다.
     result = 0
-    for i in range(9, 0, -1):
-        result += i * alpha[9-i]
+    for i in range(len(values)):
+        result += values[i] * (9 - i) # 119, 118
+    return result # 119 + 118 = 187
 
-    return result
+# 백준 제출용 코드
+# N = int(input())
+# words = [input().strip() for _ in range(N)]
+# print(math_word(words))
 
-print(math_word(words))
+# 테스트 코드
+def test_math_word():
+    assert math_word(["AAA", "AAA"]) == 1998
+    assert math_word(["GCF", "ACDEB"]) == 99437
+    assert math_word(list("ABCDEFGHIJ")) == 45
+    assert math_word(["AB", "BA"]) == 187
+    print("All test cases passed!")
+
+test_math_word()
