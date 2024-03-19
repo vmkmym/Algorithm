@@ -34,3 +34,21 @@ def test_math_word():
     print("All test cases passed!")
 
 test_math_word()
+
+
+# 알파벳의 가중치를 저장할 리스트
+weights = [0] * 99
+
+# 단어의 개수를 입력받음
+for _ in range(int(input())):
+    # 각 단어를 거꾸로 처리
+    for char in input()[::-1]:
+        # 각 알파벳의 가중치를 계산
+        weights[ord(char)] -= _
+        _ *= 10
+
+# 가중치를 오름차순으로 정렬
+weights.sort()
+
+# 가장 높은 가중치를 가진 알파벳부터 가장 높은 숫자를 할당하고 합계를 계산
+print(sum(weight * value for weight, value in zip(weights, range(-9, 0))))

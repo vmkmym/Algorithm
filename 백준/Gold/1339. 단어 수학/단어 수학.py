@@ -16,7 +16,7 @@ def math_word(words):
     # 가중치가 높은 순으로 9부터 곱해서 더한다.
     result = 0
     for i in range(len(values)):
-        result += values[i] * (9 - i) # 119, 118
+        result += values[i] * (9 - i) # 11*9, 11*8
     return result # 119 + 118 = 187
 
 N = int(input())
