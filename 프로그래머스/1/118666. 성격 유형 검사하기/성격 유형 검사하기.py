@@ -26,3 +26,28 @@ def solution(survey, choices):
                 break
 
     return "".join(answer)
+
+from collections import defaultdict
+
+def solution(survey, choices):
+    kakao_test = ["RT", "CF", "JM", "AN"]
+    score = [0, 3, 2, 1, 0, 1, 2, 3]
+    test = defaultdict(int)
+
+    for i, j in zip(survey, choices):
+        diagree, agree = i[0], i[1]
+
+        if j in [1, 2, 3]:
+            test[diagree] += score[j]
+        elif j in [5, 6, 7]:
+            test[agree] += score[j]
+
+    answer = []
+    for case in kakao_test:
+        max_score = max(test[c] for c in case)
+        for c in case:
+            if test[c] == max_score:
+                answer.append(c)
+                break
+
+    return "".join(answer)
