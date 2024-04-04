@@ -21,12 +21,16 @@ def dfs(x, y, color):
             if 0 <= nx < n and 0 <= ny < n and visited[nx][ny] == 0 and array[nx][ny] == color:
                 stack.append((nx, ny))
 
-for color in ['R', 'G', 'B']:
+def count_regions(color):
+    count = 0
     for i in range(n):
         for j in range(n):
             if visited[i][j] == 0 and array[i][j] == color:
                 dfs(i, j, color)
-                sum1 += 1
+                count += 1
+    return count
+
+sum1 = count_regions('R') + count_regions('G') + count_regions('B')
 
 for i in range(n):
     for j in range(n):
@@ -34,12 +38,6 @@ for i in range(n):
             array[i][j] = 'R'
 
 visited = [[0] * n for _ in range(n)]
-
-for color in ['R', 'B']:
-    for i in range(n):
-        for j in range(n):
-            if visited[i][j] == 0 and array[i][j] == color:
-                dfs(i, j, color)
-                sum2 += 1
+sum2 = count_regions('R') + count_regions('B')
 
 print(sum1, sum2)
