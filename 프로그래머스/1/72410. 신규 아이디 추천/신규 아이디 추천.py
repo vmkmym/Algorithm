@@ -5,7 +5,10 @@ def solution(new_id):
     new_id = new_id.lower()
     
     # 2단계: 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자 제거
+    # re.sub(pattern, repl, string, count=0, flags=0) 정규표현식 패턴, 대체할 문자열, 원본 문자열, 바꿀 횟수, 플래그
     new_id = re.sub(r"[^a-z0-9-_.]", "", new_id)
+    new_id = ''.join(c for c in new_id if c.islower() or c.isdigit() or c in ['-', '_', '.'])
+
     
     # 3단계: 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환
     new_id = re.sub(r"\.{2,}", ".", new_id)
