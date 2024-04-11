@@ -4,7 +4,7 @@ def dfs(current_node, graph, visited):
     # 현재노드의 인접노드가 방문되지 않았다면 dfs 재귀 호출 
     for adjacent_node in graph[current_node]:
         if not visited[adjacent_node]:
-            cnt += dfs(adjacent_node, graph, visited)  # 올바른 변수명으로 수정
+            cnt += dfs(adjacent_node, graph, visited)
     return cnt
         
 def solution(n, wires):
