@@ -13,11 +13,22 @@ def solution(n, times):
     return result
 
 '''
-이진 탐색(Binary Search)은 정렬된 데이터 세트에서 특정 항목을 찾는 데 사용되는 알고리즘입니다. 이진 탐색은 데이터 세트의 중간 요소를 선택하고, 찾으려는 값과 비교하여 찾으려는 값이 중간 요소보다 작으면 왼쪽 하위 배열에서, 크면 오른쪽 하위 배열에서 탐색을 계속합니다. 이 과정을 반복하여 찾으려는 값을 찾습니다.
-
-위의 코드에서는 이진 탐색을 사용하여 입국 심사를 기다리는 사람들이 모두 심사를 받는 데 걸리는 최소 시간을 찾습니다. 이를 위해, 심사를 받는 데 가장 오래 걸리는 시간(max(times) * n)을 최대 시간으로 설정하고, 1분을 최소 시간으로 설정합니다.
-
-그런 다음, 최소 시간과 최대 시간의 중간값을 계산하고, 이 시간 동안 각 심사관이 심사할 수 있는 사람의 수를 계산합니다(total = sum(mid // time for time in times)). 이 값이 n보다 작으면, 중간값을 증가시켜 더 많은 사람이 심사받을 수 있도록 합니다. 그렇지 않으면, 중간값을 감소시켜 불필요한 시간을 줄입니다.
-
-이 과정을 최소 시간이 최대 시간보다 커질 때까지 반복하며, 최소 시간을 찾습니다. 이렇게 하면, 모든 사람이 심사를 받는 데 걸리는 최소 시간을 효율적으로 찾을 수 있습니다.
+파이썬 이진 탐색 라이브러리
+from bisect import bisect_left, bisect_right 
+bisect_left(a, x): 정렬된 순서를 유지하면서 배열 a에 x를 삽입할 가장 왼쪽 인덱스를 반환 
+bisect_right(a, x): 정렬된 순서를 유지하면서 배열 a에 x를 삽입할 가장 오른쪽 인덱스를 반환
+bisect_left는 cpp의 lower_bound와 같고, bisect_right는 cpp의 upper_bound와 같다.
 '''
+def binary_search(array, target, start, end):
+    while start <= end:
+        mid = (start + end) // 2
+        # 찾은 경우 중간점 인덱스 반환
+        if array[mid] == target:
+            return mid
+        # 중간점의 값보다 찾고자 하는 값이 작은 경우 왼쪽 확인
+        elif array[mid] > target:
+            end = mid - 1
+        # 중간점의 값보다 찾고자 하는 값이 큰 경우 오른쪽 확인
+        else: 
+            start = mid + 1
+    return None
