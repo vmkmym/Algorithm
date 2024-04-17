@@ -1,31 +1,37 @@
-'''
-파이썬 이진 탐색 라이브러리
-from bisect import bisect_left, bisect_right 
-bisect_left(a, x): 정렬된 순서를 유지하면서 배열 a에 x를 삽입할 가장 왼쪽 인덱스를 반환 
-bisect_right(a, x): 정렬된 순서를 유지하면서 배열 a에 x를 삽입할 가장 오른쪽 인덱스를 반환
-bisect_left는 cpp의 lower_bound와 같고, bisect_right는 cpp의 upper_bound와 같다.
-'''
-def binary_search(array, target, start, end):
-    while start <= end:
-        mid = (start + end) // 2
-        # 찾은 경우 중간점 인덱스 반환
-        if array[mid] == target: return mid
-        # 중간점의 값보다 찾고자 하는 값이 작은 경우 왼쪽 확인
-        elif array[mid] > target: end = mid - 1
-        # 중간점의 값보다 찾고자 하는 값이 큰 경우 오른쪽 확인
-        else: start = mid + 1
-    return None
-
-def solution(n, times):
-    low = 1
-    high = max(times) * n  # 최악의 경우, 가장 오래 걸리는 심사관에게 모두 심사받는 경우를 상정
-    result = high
-    while low <= high:
-        mid = (low + high) // 2
-        total = sum(mid // time for time in times)  # mid 시간 동안 심사할 수 있는 사람의 수
-        if total < n:  # 심사받지 못한 사람이 있다면
-            low = mid + 1 # 시간을 늘려서 더 많은 사람을 심사받게 함
-        else:  # 모든 사람이 심사받았다면
-            high = mid - 1 # 시간을 줄여서 더 적은 사람을 심사받게 함
-            result = min(result, mid)  # 최소 시간을 갱신
-    return result
+def solution(today, terms, privacies):
+    '''
+    today : 오늘 날짜
+    terms : ["약관타입 유효기간"]
+    privacies : ["수집일자 약관타입"]
+    => 파기해야 할 개인정보의 번호를 오름차순으로 1차원 정수 배열에 담아 return 
+    '''
+    term_validity = {}  # 약관별 유효 기간 저장
+    for term in terms:
+        term_name, duration = term.split()
+        term_validity[term_name] = int(duration) # 유효기간을 정수로 담기
+    
+    # 파기해야 할 개인정보의 번호를 담을 리스트
+    answer = []
+    
+    for idx, privacy in enumerate(privacies):
+        # 수집일자, 약관타입으로 분리
+        collection_date, term = privacy.split()
+        # 수집일자를 년, 월, 일로 분리해서 정수로 변환
+        year, month, day = map(int, collection_date.split('.'))
+        
+        # 약관 타입에 따른 유효기간을 가져옴
+        term_duration = term_validity[term]
+        
+        # 만료일 계산, 현재 연도 + (현재 월 + 유효기간 - 1) // 12, (현재 월 + 유효기간 - 1) % 12 + 1
+        # 1을 빼는 이유는 현재 월을 포함해서 계산하기 때문
+        expiry_year = year + (month + term_duration - 1) // 12
+        expiry_month = (month + term_duration - 1) % 12 + 1
+        
+        # YYYY.MM.DD 형식으로 만료일을 저장
+        expiry_date = f"{expiry_year:04d}.{expiry_month:02d}.{day:02d}"
+        
+        # 만약 만료일이 오늘 날짜보다 이전이라면 파기 리스트에 추가
+        if expiry_date <= today:
+            answer.append(idx + 1)  # 개인정보번호는 1부터 시작하므로 idx + 1 추가
+    
+    return answer
