@@ -1,26 +1,32 @@
-n, m = map(int, input().split())
-board = [list(input()) for _ in range(n)]
+# Class for 2x2 matrix
+# |a b|
+# |c d|
+class TwoByTwoMatrix():
+    def __init__(self, a, b, c, d):
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+        
+    def __add__(self, other):
+        a = self.a + other.a
+        b = self.b + other.b
+        c = self.c + other.c
+        d = self.d + other.d
+        return TwoByTwoMatrix(a, b, c, d)
+    
+    def __mul__(self, other):
+        a = self.a * other.a + self.b * other.c
+        b = self.a * other.b + self.b * other.d
+        c = self.c * other.a + self.d * other.c
+        d = self.c * other.b + self.d * other.d
+        return TwoByTwoMatrix(a, b, c, d)
+    
+    def __repr__(self):
+        return "|{} {}|\n|{} {}|".format(self.a, self.b, self.c, self.d)
+    
+mat_a = TwoByTwoMatrix(1, 1, 1, 1)
+mat_b = TwoByTwoMatrix(2, 4, 5, 6)
 
-def min_paints(board, n, m):
-    result = [] 
-    for i in range(n-7): # 8x8 부분 체스판을 선택할 수 있는 모든 경우의 수
-        for j in range(m-7):
-            count1 = 0 # 첫 번째 칸이 W인 경우
-            count2 = 0 # 첫 번째 칸이 B인 경우
-            for k in range(i, i+8): # 선택된 8x8 부분 체스판 내의 각 칸을 순회
-                for l in range(j, j+8):
-                    if (k+l)%2 == 0: # 행과 열의 합이 짝수인 경우
-                        if board[k][l] != 'W': 
-                            count1 += 1
-                        if board[k][l] != 'B':
-                            count2 += 1
-                    else:
-                        if board[k][l] != 'B':
-                            count1 += 1
-                        if board[k][l] != 'W':
-                            count2 += 1
-            result.append(count1)
-            result.append(count2)
-    return min(result)
-
-print(min_paints(board, n, m))
+print(mat_a+mat_b)
+print(mat_a*mat_b)
