@@ -1,4 +1,4 @@
-# [code-challenge.elice] 계기판 조작하기
+# 계기판 조작하기
 
 - 엘리스 알고리즘 챌린지 Day 7
 
