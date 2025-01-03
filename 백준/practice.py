@@ -1,6 +1,3 @@
 n = int(input())
-digits = list(map(int, input().strip()))
-total_sum = 0
-for i in range(n):
-    total_sum += digits[i]
-print(total_sum)
+digits = list(map(int, input().split()))
+print(min(digits), max(digits))
